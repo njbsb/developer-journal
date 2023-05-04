@@ -1,0 +1,621 @@
+"ToDoScreen As screen.'tabletAutoLayout_Sidebar_ver1.0'":
+    BackgroundImage: =
+    Fill: =RGBA(0, 0, 0, 0)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnHidden: |-
+        =Clear(colTaskFolder);
+        Clear(colToDo);
+        // Reset(cmbTodoStatus);
+        Reset(galTodoFolder);
+    OnVisible: =Select(icoRefresh_1)
+
+    ScreenContainer1_1 As groupContainer.horizontalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        SidebarContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(237, 237, 237, 1)
+            FillPortions: =3
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =conProp.padding
+            PaddingLeft: =conProp.padding
+            PaddingRight: =conProp.padding
+            PaddingTop: =conProp.padding
+            ZIndex: =2
+
+            Container3_1 As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =70
+                LayoutGap: =conProp.gap
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingRight: =5
+                ZIndex: =1
+
+                Icon2_1 As icon.BackArrow:
+                    AccessibleLabel: ="Back button"
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(220, 220, 220, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.BackArrow
+                    OnSelect: =Navigate(HomeScreen, ScreenTransition.Fade)
+                    PaddingBottom: =icoProp.padding*2
+                    PaddingLeft: =icoProp.padding
+                    PaddingRight: =icoProp.padding
+                    PaddingTop: =icoProp.padding*2
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    TabIndex: =0
+                    Tooltip: ="Back to homepage"
+                    ZIndex: =1
+
+                Container24 As groupContainer.manualLayoutContainer:
+                    LayoutMinHeight: =20
+                    LayoutMinWidth: =100
+                    ZIndex: =2
+
+                btnTodo_1 As button:
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 120, 212, 1)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: |-
+                        =Launch("https://to-do.office.com/tasks/")
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =btnProp.radius
+                    RadiusBottomRight: =btnProp.radius
+                    RadiusTopLeft: =btnProp.radius
+                    RadiusTopRight: =btnProp.radius
+                    Size: =12
+                    Text: ="Go to List"
+                    Width: =120
+                    X: =40
+                    Y: =520
+                    ZIndex: =3
+
+            galTodoFolder As gallery.galleryVertical:
+                AccessibleLabel: ="Gallery of Journal List"
+                BorderColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =0
+                Items: =colTaskFolder
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =120
+                LayoutMinWidth: =320
+                OnSelect: |-
+                    =UpdateContext(
+                        {
+                            locFolderId: ThisItem.id,
+                            locShowCompletedTask: false
+                        }
+                    );
+                    ClearCollect(
+                        colToDo,
+                        'MicrosoftTo-Do(Business)'.ListToDosByFolder(locFolderId)
+                    )
+                TabIndex: =0
+                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(80, Self.Width - 60), Min(80, Self.Height - 60))
+                ZIndex: =3
+
+                Container20_1 As groupContainer.verticalAutoLayoutContainer:
+                    Fill: |-
+                        =If(ThisItem.IsSelected,
+                        RGBA(204, 228, 246, 1), Color.Transparent)
+                    Height: =Parent.TemplateHeight
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =conProp.padding
+                    PaddingRight: =conProp.padding
+                    PaddingTop: =conProp.padding
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =4
+
+                    lblListDisplayName As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =
+                        Size: =13
+                        Text: |-
+                            =// ThisItem.Title
+                            ThisItem.displayName
+                        ZIndex: =1
+
+                    lblWellKnownListName As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        OnSelect: =
+                        Size: =11
+                        Text: =ThisItem.wellknownListName
+                        VerticalAlign: =VerticalAlign.Top
+                        Y: =40
+                        ZIndex: =2
+
+                    Rectangle1_2 As rectangle:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        DisabledFill: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(0, 120, 212, 0.5)
+                        FocusedBorderThickness: =4
+                        Height: =1
+                        HoverFill: =RGBA(0, 120, 212, 1)
+                        OnSelect: =
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        Width: =Parent.Width
+                        Y: =56
+                        ZIndex: =3
+
+                Button5_1 As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: |-
+                        =If(
+                            ThisItem.IsSelected,
+                            RGBA(
+                                0,
+                                120,
+                                212,
+                                0.3
+                            ),
+                            Color.Transparent
+                        )
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.TemplateHeight
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(0, 120, 212, 0.2)
+                    OnSelect: =Select(Parent)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Size: =15
+                    Text: =""
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =5
+
+        RightSideContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =7
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =3
+
+            HeaderContainer1_1 As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =75
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =conProp.padding
+                PaddingLeft: =conProp.padding
+                PaddingRight: =conProp.padding
+                PaddingTop: =conProp.padding
+                ZIndex: =1
+
+                Label4_1 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Size: =24
+                    Text: ="To Do"
+                    ZIndex: =1
+
+                icoRefresh_1 As icon.BackArrow:
+                    AccessibleLabel: ="Refresh data source"
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(220, 220, 220, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.Reload
+                    OnSelect: =ClearCollect(colTaskFolder, 'MicrosoftTo-Do(Business)'.GetAllTodoListsV2())
+                    PaddingBottom: =icoProp.padding*2
+                    PaddingLeft: =icoProp.padding
+                    PaddingRight: =icoProp.padding
+                    PaddingTop: =icoProp.padding*2
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    TabIndex: =0
+                    Tooltip: ="Refresh data source"
+                    ZIndex: =2
+
+            Rectangle1_3 As rectangle:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledFill: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(0, 120, 212, 0.5)
+                FocusedBorderThickness: =4
+                Height: =1
+                HoverFill: =RGBA(0, 120, 212, 1)
+                OnSelect: =
+                PressedFill: =RGBA(0, 120, 212, 1)
+                Width: =Parent.Width
+                Y: =56
+                ZIndex: =2
+
+            MainSectionContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =8
+                PaddingTop: =conProp.padding
+                ZIndex: =3
+
+                galTodoNotstarted As gallery.variableTemplateHeightGallery:
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    DelayItemLoading: =true
+                    Items: |-
+                        =SortByColumns(
+                            Filter(
+                                colToDo,
+                                /*
+                                Or(
+                                    IsEmpty(cmbTodoStatus.SelectedItems),
+                                    IsBlank(cmbTodoStatus.Selected),
+                                    status in cmbTodoStatus.SelectedItems
+                                )
+                                */
+                                status = "notStarted"
+                            ),
+                            
+                            "lastModifiedDateTime",
+                            SortOrder.Descending
+                        )
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplateSize: =280
+                    ZIndex: =1
+
+                    lblTodoSubject As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =Select(Parent)
+                        Size: =13
+                        Text: =ThisItem.subject
+                        ZIndex: =1
+
+                    chbTodoStatus As checkbox:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        CheckboxBorderColor: =RGBA(102, 102, 102, 1)
+                        CheckboxSize: =30
+                        CheckmarkFill: =RGBA(0, 120, 212, 1)
+                        Color: =RGBA(51, 51, 51, 1)
+                        Default: =If(ThisItem.status = "completed", true)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(51, 51, 51, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        OnCheck: |-
+                            =UpdateContext({locSelectedTodo: ThisItem});
+                            With(
+                                {varCheckStatus: "completed"},
+                                With(
+                                    {
+                                        varUpdateTodo: 'MicrosoftTo-Do(Business)'.UpdateToDoV2(
+                                            locFolderId,
+                                            locSelectedTodo.id,
+                                            {status: varCheckStatus}
+                                        )
+                                    },
+                                    If(
+                                        !IsBlank(varUpdateTodo),
+                                        Patch(
+                                            colToDo,
+                                            locSelectedTodo,
+                                            {status: varCheckStatus}
+                                        )
+                                    )
+                                )
+                            )
+                        OnSelect: =
+                        OnUncheck: |-
+                            =UpdateContext({locSelectedTodo: ThisItem});
+                            With(
+                                {varUnCheckStatus: "notStarted"},
+                                With(
+                                    {
+                                        varUpdateTodo: 'MicrosoftTo-Do(Business)'.UpdateToDoV2(
+                                            locFolderId,
+                                            locSelectedTodo.id,
+                                            {status: varUnCheckStatus}
+                                        )
+                                    },
+                                    If(
+                                        !IsBlank(varUpdateTodo),
+                                        Patch(
+                                            colToDo,
+                                            locSelectedTodo,
+                                            {status: varUnCheckStatus}
+                                        )
+                                    )
+                                )
+                            )
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(51, 51, 51, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Size: =13
+                        Text: =If(Self.Value = true, "Done", "Pending")
+                        X: =Parent.TemplateWidth - Self.Width
+                        ZIndex: =2
+
+                    lblTodoStatus As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        OnSelect: =Select(Parent)
+                        Size: =13
+                        Text: |-
+                            =ThisItem.status 
+                            // & Text(ThisItem.createdDateTime, "dd/mm/yyyy")
+                        Width: =300
+                        Y: =40
+                        ZIndex: =3
+
+                Container19 As groupContainer.horizontalAutoLayoutContainer:
+                    BorderColor: =RGBA(204, 228, 246, 1)
+                    FillPortions: =0
+                    Height: =64
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =2
+
+                    lblShowCompletedTask As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =Select(icoShowCompletedTask);
+                        Size: =13
+                        Text: ="Show Completed Task"
+                        ZIndex: =1
+
+                    icoShowCompletedTask As icon.NextArrow:
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(220, 220, 220, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.NextArrow
+                        OnSelect: |-
+                            =UpdateContext({locShowCompletedTask: !locShowCompletedTask})
+                        PaddingBottom: =icoProp.padding*2
+                        PaddingLeft: =icoProp.padding
+                        PaddingRight: =icoProp.padding
+                        PaddingTop: =icoProp.padding*2
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Rotation: =If(locShowCompletedTask, 270, 90)
+                        ZIndex: =2
+
+                galTodoCompleted As gallery.variableTemplateHeightGallery:
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    DelayItemLoading: =true
+                    Items: |-
+                        =SortByColumns(
+                            Filter(
+                                colToDo,
+                                /*
+                                Or(
+                                    IsEmpty(cmbTodoStatus.SelectedItems),
+                                    IsBlank(cmbTodoStatus.Selected),
+                                    status in cmbTodoStatus.SelectedItems
+                                )
+                                */
+                                status = "completed"
+                            ),
+                            "lastModifiedDateTime",
+                            SortOrder.Descending
+                        )
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplateSize: =280
+                    Visible: =locShowCompletedTask
+                    ZIndex: =3
+
+                    lblTodoSubject_1 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =Select(Parent)
+                        Size: =13
+                        Text: =ThisItem.subject
+                        ZIndex: =1
+
+                    chbTodoStatus_1 As checkbox:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        CheckboxBorderColor: =RGBA(102, 102, 102, 1)
+                        CheckboxSize: =30
+                        CheckmarkFill: =RGBA(0, 120, 212, 1)
+                        Color: =RGBA(51, 51, 51, 1)
+                        Default: =If(ThisItem.status = "completed", true)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(51, 51, 51, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        OnCheck: |-
+                            =UpdateContext({locSelectedTodo: ThisItem});
+                            With(
+                                {varUnCheckStatus: "completed"},
+                                With(
+                                    {
+                                        varUpdateTodo: 'MicrosoftTo-Do(Business)'.UpdateToDoV2(
+                                            locFolderId,
+                                            locSelectedTodo.id,
+                                            {status: varUnCheckStatus}
+                                        )
+                                    },
+                                    If(
+                                        !IsBlank(varUpdateTodo),
+                                        Patch(
+                                            colToDo,
+                                            locSelectedTodo,
+                                            {status: varUnCheckStatus}
+                                        )
+                                    )
+                                )
+                            )
+                        OnSelect: =
+                        OnUncheck: |-
+                            =UpdateContext({locSelectedTodo: ThisItem});
+                            With(
+                                {varUnCheckStatus: "notStarted"},
+                                With(
+                                    {
+                                        varUpdateTodo: 'MicrosoftTo-Do(Business)'.UpdateToDoV2(
+                                            locFolderId,
+                                            locSelectedTodo.id,
+                                            {status: varUnCheckStatus}
+                                        )
+                                    },
+                                    If(
+                                        !IsBlank(varUpdateTodo),
+                                        Patch(
+                                            colToDo,
+                                            locSelectedTodo,
+                                            {status: varUnCheckStatus}
+                                        )
+                                    )
+                                )
+                            )
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(51, 51, 51, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Size: =13
+                        Text: =If(Self.Value = true, "Done", "Pending")
+                        X: =Parent.TemplateWidth - Self.Width
+                        ZIndex: =2
+
+                    lblTodoStatus_1 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        OnSelect: =Select(Parent)
+                        Size: =13
+                        Text: |-
+                            =ThisItem.status 
+                            // & Text(ThisItem.createdDateTime, "dd/mm/yyyy")
+                        Width: =300
+                        Y: =40
+                        ZIndex: =3
+

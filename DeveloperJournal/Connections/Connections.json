@@ -1,0 +1,51 @@
+{
+  "19996878-d175-48b9-9eb6-1f86f15db354": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/juanq/gateway/greyhound/3000.150.11/1.0.1613.3116/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://tekniklibartimy.sharepoint.com/sites/IT": {
+        "datasetOverride": {
+          "environmentVariableName": "glb_JournalDataSource",
+          "name": "https://tekniklibartimy.sharepoint.com/sites/IT"
+        },
+        "dataSources": {
+          "Journal List": {
+            "tableName": "7b12e801-b374-4b40-b59e-8dc05ff0c659",
+            "tableNameOverride": {
+              "environmentVariableName": "glb_JournalList"
+            }
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Journal List"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "19996878-d175-48b9-9eb6-1f86f15db354"
+  },
+  "a74c330f-dc4e-4ab4-8ce0-cbf201f28f51": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Microsoft To-Do (Business)",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1589/1.0.1589.2945/todo/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_todo",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "MicrosoftTo-Do(Business)"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "a74c330f-dc4e-4ab4-8ce0-cbf201f28f51"
+  }
+}

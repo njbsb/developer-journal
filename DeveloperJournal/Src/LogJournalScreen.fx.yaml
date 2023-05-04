@@ -1,0 +1,514 @@
+"LogJournalScreen As screen.'tabletAutoLayout_HeaderMainFooter_ver1.0'":
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnHidden: |-
+        =UpdateContext({locResetFormField: true});
+    OnVisible: |-
+        =UpdateContext({locResetFormField: false});
+        Reset(inpWork);
+        Reset(inpLearning)
+
+    ScreenContainer3 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        HeaderContainer3 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =75
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =conProp.padding
+            PaddingRight: =conProp.padding
+            ZIndex: =2
+
+            Label8 As label:
+                AlignInContainer: =AlignInContainer.Stretch
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(0, 120, 212, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Size: =24
+                Text: ="Log New Progress"
+                ZIndex: =1
+
+        MainSectionContainer3 As groupContainer.verticalAutoLayoutContainer:
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =conProp.padding
+            PaddingRight: =conProp.padding
+            ZIndex: =3
+
+            breadCrumb As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =40
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =40
+                PaddingRight: =20
+                ZIndex: =1
+
+                Button2 As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    HoverFill: =// ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: =Navigate(HomeScreen, ScreenTransition.Fade)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =// ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =11
+                    Text: ="Home"
+                    Width: =80
+                    ZIndex: =1
+
+                Icon3 As icon.ArrowRight:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(220, 220, 220, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =4
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.ChevronRight
+                    LayoutMinHeight: =40
+                    PaddingBottom: =14
+                    PaddingTop: =14
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    Width: =30
+                    ZIndex: =2
+
+                Button2_1 As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    Color: =RGBA(0, 84, 148, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =DisplayMode.View
+                    Fill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =11
+                    Text: ="New Progress"
+                    Width: =120
+                    ZIndex: =3
+
+            Container9 As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =120
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =2
+
+                Container10 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =2
+                    ZIndex: =1
+
+                    Label9 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: ="Title"
+                        ZIndex: =1
+
+                    inpTitle As text:
+                        AccessibleLabel: ="Input text for log title"
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Color: =RGBA(51, 51, 51, 1)
+                        Default: =Concatenate(User().FullName, " | ", Text(Today(), "yyyymmdd"))
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.Disabled
+                        FocusedBorderThickness: =1
+                        Font: =Font.'Segoe UI'
+                        HintText: ="Log Title"
+                        HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        HoverColor: =RGBA(51, 51, 51, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(51, 51, 51, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Reset: =locResetFormField
+                        Size: =12
+                        ZIndex: =2
+
+                Container11 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =2
+                    ZIndex: =2
+
+                    Label9_1 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: ="Log Date"
+                        ZIndex: =1
+
+                    DatePicker1 As datepicker:
+                        AccessibleLabel: ="Datepicker for log"
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        CalendarHeaderFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.Disabled
+                        Font: =Font.'Segoe UI'
+                        Format: |-
+                            =//DateTimeFormat.ShortDate
+                            "dd/mm/yyyy"
+                        HoverDateFill: =RGBA(200, 200, 200, 1)
+                        IconBackground: =RGBA(0, 120, 212, 1)
+                        PaddingTop: =5
+                        SelectedDateFill: =RGBA(0, 120, 212, 1)
+                        Size: =12
+                        ZIndex: =2
+
+                Container15 As groupContainer.manualLayoutContainer:
+                    FillPortions: =2
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    ZIndex: =3
+
+            Container12 As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =2
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =3
+
+                Container14 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =4
+                    PaddingRight: =4
+                    ZIndex: =3
+
+                    Label10 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: ="* Work"
+                        ZIndex: =1
+
+                    inpWork As richTextEditor:
+                        AccessibleLabel: ="rich input text for work progress"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Default: =
+                        FillPortions: =1
+                        LayoutMinWidth: =120
+                        ZIndex: =2
+
+                Container14_1 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =4
+                    PaddingRight: =4
+                    ZIndex: =4
+
+                    Label10_1 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: ="* Learning"
+                        ZIndex: =1
+
+                    inpLearning As richTextEditor:
+                        AccessibleLabel: ="rich input text for work progress"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Default: =
+                        FillPortions: =1
+                        ZIndex: =2
+
+            Container16 As groupContainer.horizontalAutoLayoutContainer:
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =4
+
+                Container17 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =2
+                    PaddingRight: =2
+                    ZIndex: =3
+
+                    Label10_2 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: ="* Self Rating"
+                        ZIndex: =1
+
+                    rtgSelfRating As rating:
+                        AccessibleLabel: ="self rating option"
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Default: =0
+                        DisabledBorderColor: =RGBA(159, 167, 165, 1)
+                        DisabledFill: =Self.Fill
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderColor: =Self.BorderColor
+                        FocusedBorderThickness: =4
+                        Height: =40
+                        HoverFill: =Self.Fill
+                        LayoutMinHeight: =40
+                        LayoutMinWidth: =200
+                        PressedFill: =Self.Fill
+                        RatingFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        Reset: =locResetFormField
+                        Width: =200
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    Label11 As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(149, 149, 149, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =10
+                        Text: ="Rate yourself this week from 1 - 5"
+                        ZIndex: =3
+
+                Container18 As groupContainer.verticalAutoLayoutContainer:
+                    FillPortions: =3
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =2
+                    PaddingRight: =2
+                    ZIndex: =4
+
+                    Label10_3 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: ="* Justification"
+                        ZIndex: =1
+
+                    inpRatingJustification As text:
+                        AccessibleLabel: ="input for comment/justification of self rating"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Color: =RGBA(51, 51, 51, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        FocusedBorderThickness: =1
+                        Font: =Font.'Segoe UI'
+                        Height: =80
+                        HintText: ="Justification of your self rating or any help required"
+                        HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        HoverColor: =RGBA(51, 51, 51, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        Mode: =TextMode.MultiLine
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(51, 51, 51, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Reset: =locResetFormField
+                        Size: =12
+                        ZIndex: =2
+
+        FooterContainer2 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =75
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =4
+
+            Button1 As button:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(0, 120, 212, 1)
+                FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                OnSelect: |-
+                    =With(
+                        {
+                            Title: inpTitle.Text,
+                            Created: DatePicker1.SelectedDate,
+                            WorkUpdate: inpWork.HtmlText,
+                            LearningUpdate: inpLearning.HtmlText,
+                            Rating: rtgSelfRating.Value,
+                            RatingJustification: inpRatingJustification.Text
+                        },
+                        If(
+                            Or(
+                                IsBlank(Title),
+                                IsBlank(WorkUpdate),
+                                IsBlank(LearningUpdate),
+                                Rating = 0
+                            ),
+                            Notify("Please ensure all fields are filled"),
+                            With(
+                                {
+                                    varNewLog: Patch(
+                                        'Journal List',
+                                        Defaults('Journal List'),
+                                        {
+                                            Title: Title,
+                                            Work: WorkUpdate,
+                                            Learning: LearningUpdate,
+                                            Year: Year(Today()),
+                                            Month: Month(Today()),
+                                            SelfRating: {
+                                                Value: Rating
+                                            },
+                                            RatingJustification: RatingJustification
+                                        }
+                                    )
+                                },
+                                If(
+                                    Not(IsBlank(varNewLog.ID)),
+                                    Notify(
+                                        "Success",
+                                        NotificationType.Success
+                                    );
+                                    Navigate(
+                                        HomeScreen,
+                                        ScreenTransition.Fade
+                                    ),
+                                    Notify(
+                                        "System ran into an issue when submitting the journal log.",
+                                        NotificationType.Error
+                                    )
+                                )
+                            )
+                        )
+                    )
+                PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Size: =12
+                Text: ="Submit"
+                Width: =140
+                ZIndex: =1
+

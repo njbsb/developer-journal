@@ -1,0 +1,285 @@
+HomeScreen As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: =
+
+    Container4 As groupContainer.horizontalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =5
+
+        Container5 As groupContainer.verticalAutoLayoutContainer:
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: |
+                =100
+            ZIndex: =1
+
+            Container7 As groupContainer.verticalAutoLayoutContainer:
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingTop: =120
+                ZIndex: =1
+
+                Label2 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    AutoHeight: =true
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    Height: =51
+                    Size: =13
+                    Text: |-
+                        =With(
+                            {currentHour: Hour(Now())},
+                            With(
+                                {
+                                    greeting: If(
+                                        currentHour <= 12,
+                                        "Good morning",
+                                        currentHour <= 18,
+                                        "Good afternoon",
+                                        "Good evening"
+                                    )
+                                },
+                                Concatenate(
+                                    greeting,
+                                    ", ",
+                                    User().FullName
+                                )
+                            )
+                        )
+                    Visible: =false
+                    Width: =365
+                    X: =40
+                    Y: =90
+                    ZIndex: =1
+
+                Label1 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    AutoHeight: =true
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =99
+                    Size: =28
+                    Text: ="Developer Journal"
+                    Width: =701
+                    X: =40
+                    Y: =25
+                    ZIndex: =2
+
+                Label7 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    Size: =10
+                    Text: |-
+                        =With(
+                            {currentHour: Hour(Now())},
+                            With(
+                                {
+                                    greeting: If(
+                                        currentHour <= 12,
+                                        "Good morning",
+                                        currentHour <= 18,
+                                        "Good afternoon",
+                                        "Good evening"
+                                    )
+                                },
+                                Concatenate(
+                                    greeting,
+                                    ", ",
+                                    User().FullName,
+                                    Char(13),
+                                    "Have you checked in your progress this week?"
+                                )
+                            )
+                        )
+                    ZIndex: =3
+
+            Container8 As groupContainer.verticalAutoLayoutContainer:
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =conProp.gap
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =2
+
+                btnLogJournal As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 120, 212, 1)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: =Navigate(LogJournalScreen, ScreenTransition.Fade)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =btnProp.radius
+                    RadiusBottomRight: =btnProp.radius
+                    RadiusTopLeft: =btnProp.radius
+                    RadiusTopRight: =btnProp.radius
+                    Size: =12
+                    Text: ="Log Journal"
+                    X: =40
+                    Y: =452
+                    ZIndex: =1
+
+                btnHistory As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 120, 212, 1)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: =Navigate(HistoryScreen, ScreenTransition.Fade)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =btnProp.radius
+                    RadiusBottomRight: =btnProp.radius
+                    RadiusTopLeft: =btnProp.radius
+                    RadiusTopRight: =btnProp.radius
+                    Size: =12
+                    Text: ="History"
+                    X: =40
+                    Y: =520
+                    ZIndex: =2
+
+                btnOverview As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 120, 212, 1)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: =Navigate(OverviewScreen, ScreenTransition.Fade)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =btnProp.radius
+                    RadiusBottomRight: =btnProp.radius
+                    RadiusTopLeft: =btnProp.radius
+                    RadiusTopRight: =btnProp.radius
+                    Size: =12
+                    Text: ="Overview"
+                    X: =40
+                    Y: =520
+                    ZIndex: =3
+
+                Container2 As groupContainer.manualLayoutContainer:
+                    FillPortions: =0
+                    Height: =20
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    ZIndex: =4
+
+                btnTodo As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 120, 212, 1)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: =Navigate(ToDoScreen, ScreenTransition.Fade)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =btnProp.radius
+                    RadiusBottomRight: =btnProp.radius
+                    RadiusTopLeft: =btnProp.radius
+                    RadiusTopRight: =btnProp.radius
+                    Size: =12
+                    Text: ="To-Do"
+                    X: =40
+                    Y: =520
+                    ZIndex: =5
+
+        Container6 As groupContainer.verticalAutoLayoutContainer:
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =20
+            PaddingRight: =40
+            PaddingTop: =10
+            ZIndex: =2
+
+            Image1 As image:
+                AlignInContainer: =AlignInContainer.Stretch
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FillPortions: =1
+                FocusedBorderThickness: =4
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: ='Progress overview-amico'
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                ZIndex: =1
+
+            Label6 As label:
+                Align: =Align.Center
+                AlignInContainer: =AlignInContainer.Stretch
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(149, 149, 149, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Size: =11
+                Text: ="Track your activity and progress, and stay productive!"
+                ZIndex: =2
+

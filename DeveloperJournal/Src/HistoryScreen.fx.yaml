@@ -1,0 +1,745 @@
+"HistoryScreen As screen.'tabletAutoLayout_Sidebar_ver1.0'":
+    BackgroundImage: =
+    Fill: =RGBA(0, 0, 0, 0)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnHidden: |-
+        =UpdateContext({locJournal: Blank()})
+    OnVisible: |-
+        =ClearCollect(
+            colYear,
+            ForAll(Distinct(
+                AddColumns(
+                    'Journal List',
+                    "YearValue",
+                    Year(Created)
+                ),
+                YearValue
+            ), {Result: ThisRecord.Value})
+        )
+
+    ScreenContainer1 As groupContainer.horizontalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        SidebarContainer1 As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(237, 237, 237, 1)
+            FillPortions: =3
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =conProp.padding
+            PaddingLeft: =conProp.padding
+            PaddingRight: =conProp.padding
+            PaddingTop: =conProp.padding
+            ZIndex: =2
+
+            Container3 As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =70
+                LayoutGap: =conProp.gap
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =1
+
+                Icon2 As icon.BackArrow:
+                    AccessibleLabel: ="Back button"
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(220, 220, 220, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.BackArrow
+                    OnSelect: =Navigate(HomeScreen, ScreenTransition.Fade)
+                    PaddingBottom: =icoProp.padding*2
+                    PaddingLeft: =icoProp.padding
+                    PaddingRight: =icoProp.padding
+                    PaddingTop: =icoProp.padding*2
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    TabIndex: =0
+                    Tooltip: ="Back to homepage"
+                    ZIndex: =1
+
+                cbMonth As combobox:
+                    AccessibleLabel: ="Month dropdown"
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    BorderThickness: =0
+                    ChevronBackground: =RGBA(255, 255, 255, 1)
+                    ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+                    ChevronDisabledFill: =RGBA(166, 166, 166, 1)
+                    ChevronFill: =RGBA(33, 33, 33, 1)
+                    ChevronHoverBackground: =RGBA(212, 212, 212, 1)
+                    ChevronHoverFill: =RGBA(33, 33, 33, 1)
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayFields: =["month"]
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverColor: =RGBA(51, 51, 51, 1)
+                    HoverFill: =RGBA(212, 212, 212, 1)
+                    InputTextPlaceholder: ="Find month"
+                    Items: =colMonths
+                    NoSelectionText: ="Filter month"
+                    OnChange: |-
+                        =UpdateContext({locJournal: Blank()})
+                    PaddingLeft: =12
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =RGBA(0, 120, 212, 1)
+                    SearchFields: =["month"]
+                    SearchItems: =Search(colMonths,cbMonth.SearchText,"month")
+                    SelectionFill: =RGBA(0, 120, 212, 1)
+                    Width: =140
+                    ZIndex: =2
+
+                cbYear As combobox:
+                    AccessibleLabel: ="Year dropdown"
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    BorderThickness: =0
+                    ChevronBackground: =RGBA(255, 255, 255, 1)
+                    ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+                    ChevronDisabledFill: =RGBA(166, 166, 166, 1)
+                    ChevronFill: =RGBA(33, 33, 33, 1)
+                    ChevronHoverBackground: =RGBA(212, 212, 212, 1)
+                    ChevronHoverFill: =RGBA(33, 33, 33, 1)
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayFields: =["Result"]
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverColor: =RGBA(51, 51, 51, 1)
+                    HoverFill: =RGBA(212, 212, 212, 1)
+                    InputTextPlaceholder: ="Find year"
+                    IsSearchable: =false
+                    Items: =colYear
+                    NoSelectionText: ="Filter year"
+                    PaddingLeft: =12
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =RGBA(0, 120, 212, 1)
+                    SearchFields: =["Result"]
+                    SearchItems: =[]
+                    SelectionFill: =RGBA(0, 120, 212, 1)
+                    Width: =140
+                    ZIndex: =3
+
+            galJournalList As gallery.galleryVertical:
+                AccessibleLabel: ="Gallery of Journal List"
+                BorderColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =0
+                Items: |-
+                    =Filter(
+                        AddColumns(
+                            'Journal List',
+                            "YearValue",
+                            Year(Created),
+                            "MonthValue",
+                            Month(Created)
+                        ),
+                        Or(
+                            IsEmpty(cbYear.SelectedItems),
+                            YearValue = cbYear.Selected.Result,
+                            IsBlank(cbYear.Selected.Result)
+                        ),
+                        Or(
+                            IsEmpty(cbMonth.SelectedItems),
+                            MonthValue = cbMonth.Selected.value,
+                            IsBlank(cbMonth.Selected.value)
+                        ),
+                        Or(
+                            locShowAllUsers = false And 'Created By'.Email = User().Email,
+                            locShowAllUsers = true
+                        )
+                    )
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =120
+                LayoutMinWidth: =320
+                OnSelect: |-
+                    =UpdateContext({locJournal: ThisItem})
+                TabIndex: =0
+                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(80, Self.Width - 60), Min(80, Self.Height - 60))
+                ZIndex: =3
+
+                Container20 As groupContainer.verticalAutoLayoutContainer:
+                    Fill: |-
+                        =If(ThisItem.IsSelected,
+                        RGBA(204, 228, 246, 1), Color.Transparent)
+                    Height: =Parent.TemplateHeight
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =conProp.padding
+                    PaddingRight: =conProp.padding
+                    PaddingTop: =conProp.padding
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =4
+
+                    Label3 As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        OnSelect: =
+                        Size: =13
+                        Text: =ThisItem.Title
+                        ZIndex: =1
+
+                    Label3_1 As label:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        OnSelect: =
+                        Size: =11
+                        Text: |-
+                            =Concatenate(
+                                Text(
+                                    ThisItem.Created,
+                                    "dd/mm/yyyy HH:mm AM/PM"
+                                ),
+                                " | ",
+                                ThisItem.'Created By'.Email
+                            )
+                        VerticalAlign: =VerticalAlign.Top
+                        Y: =40
+                        ZIndex: =2
+
+                    Rectangle1 As rectangle:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        DisabledFill: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(0, 120, 212, 0.5)
+                        FocusedBorderThickness: =4
+                        Height: =1
+                        HoverFill: =RGBA(0, 120, 212, 1)
+                        OnSelect: =
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        Width: =Parent.Width
+                        Y: =56
+                        ZIndex: =3
+
+                Button5 As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: |-
+                        =If(
+                            ThisItem.IsSelected,
+                            RGBA(
+                                0,
+                                120,
+                                212,
+                                0.3
+                            ),
+                            Color.Transparent
+                        )
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    FocusedBorderThickness: =0
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.TemplateHeight
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =RGBA(0, 120, 212, 0.2)
+                    OnSelect: =Select(Parent)
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Size: =15
+                    Text: =""
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =5
+
+            Toggle1 As toggleSwitch:
+                AlignInContainer: =AlignInContainer.Start
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                Color: =RGBA(51, 51, 51, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FalseFill: =RGBA(102, 102, 102, 1)
+                FalseHoverFill: =RGBA(33, 33, 33, 1)
+                FalseText: ="Show all user's"
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                HandleFill: =RGBA(255, 255, 255, 1)
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                OnChange: |-
+                    =UpdateContext({locShowAllUsers: Self.Value})
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                Size: =11
+                TrueFill: =RGBA(0, 120, 212, 1)
+                TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                TrueText: ="Show all user's"
+                Visible: =isAdmin
+                Width: =160
+                ZIndex: =4
+
+        RightSideContainer1 As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =7
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =3
+
+            HeaderContainer1 As groupContainer.horizontalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =75
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =conProp.padding
+                PaddingLeft: =conProp.padding
+                PaddingRight: =conProp.padding
+                PaddingTop: =conProp.padding
+                ZIndex: =1
+
+                Label4 As label:
+                    AlignInContainer: =AlignInContainer.Stretch
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Size: =24
+                    Text: ="Journal History"
+                    ZIndex: =1
+
+                icoRefresh As icon.BackArrow:
+                    AccessibleLabel: ="Refresh data source"
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    Color: =RGBA(0, 120, 212, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(220, 220, 220, 1)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    Icon: =Icon.Reload
+                    OnSelect: =Refresh('Journal List')
+                    PaddingBottom: =icoProp.padding*2
+                    PaddingLeft: =icoProp.padding
+                    PaddingRight: =icoProp.padding
+                    PaddingTop: =icoProp.padding*2
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    TabIndex: =0
+                    Tooltip: ="Refresh data source"
+                    ZIndex: =2
+
+            Rectangle1_1 As rectangle:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledFill: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(0, 120, 212, 0.5)
+                FocusedBorderThickness: =4
+                Height: =1
+                HoverFill: =RGBA(0, 120, 212, 1)
+                OnSelect: =
+                PressedFill: =RGBA(0, 120, 212, 1)
+                Width: =Parent.Width
+                Y: =56
+                ZIndex: =2
+
+            MainSectionContainer1 As groupContainer.verticalAutoLayoutContainer:
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =8
+                PaddingTop: =conProp.padding
+                ZIndex: =3
+
+                conJournalTitle As groupContainer.verticalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =50
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =2
+                    PaddingRight: =conProp.padding
+                    Visible: =Not(IsBlank(locJournal))
+                    ZIndex: =1
+
+                    Label5 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =18
+                        Text: =locJournal.Title
+                        ZIndex: =1
+
+                    Label5_4 As label:
+                        Align: =Align.Right
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Size: =11
+                        Text: |-
+                            =Text(
+                            locJournal.Created, "dd/mm/yyyy HH:mm AM/PM")
+                        VerticalAlign: =VerticalAlign.Top
+                        ZIndex: =2
+
+                conMonthYearTag As groupContainer.horizontalAutoLayoutContainer:
+                    FillPortions: =0
+                    Height: =40
+                    LayoutGap: =conProp.gap
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =conProp.padding
+                    PaddingRight: =conProp.padding
+                    Visible: =Not(IsBlank(locJournal))
+                    ZIndex: =2
+
+                    Button4 As button:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(0, 120, 212, 1)
+                        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                        Font: =Font.'Segoe UI'
+                        Height: =28
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =3
+                        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        Size: =11
+                        Text: |-
+                            =LookUp(
+                                colMonths,
+                                value = locJournal.MonthValue
+                            ).month
+                        Width: =90
+                        ZIndex: =1
+
+                    Button4_1 As button:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(0, 120, 212, 1)
+                        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                        Font: =Font.'Segoe UI'
+                        Height: =28
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =3
+                        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        Size: =11
+                        Text: =locJournal.YearValue
+                        Width: =60
+                        ZIndex: =2
+
+                conLogs As groupContainer.horizontalAutoLayoutContainer:
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    ZIndex: =3
+
+                    Container1_2 As groupContainer.verticalAutoLayoutContainer:
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =1
+                        PaddingLeft: =1
+                        PaddingRight: =1
+                        Visible: =Not(IsBlank(locJournal))
+                        ZIndex: =1
+
+                        Label5_6 As label:
+                            BorderColor: =RGBA(0, 0, 0, 0)
+                            BorderStyle: =BorderStyle.None
+                            BorderThickness: =2
+                            Color: =RGBA(51, 51, 51, 1)
+                            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            FocusedBorderThickness: =4
+                            Font: =Font.'Segoe UI'
+                            FontWeight: =FontWeight.Semibold
+                            Size: =11
+                            Text: ="Work Log"
+                            ZIndex: =1
+
+                        HtmlText1 As htmlViewer:
+                            AlignInContainer: =AlignInContainer.Stretch
+                            BorderColor: =RGBA(230, 230, 230, 1)
+                            BorderThickness: =1
+                            FillPortions: =1
+                            HtmlText: |-
+                                =Coalesce(
+                                    locJournal.Work,
+                                    "None"
+                                )
+                            ZIndex: =2
+
+                    Container1_3 As groupContainer.verticalAutoLayoutContainer:
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =1
+                        PaddingLeft: =1
+                        PaddingRight: =1
+                        Visible: =Not(IsBlank(locJournal))
+                        ZIndex: =2
+
+                        Label5_7 As label:
+                            BorderColor: =RGBA(0, 0, 0, 0)
+                            BorderStyle: =BorderStyle.None
+                            BorderThickness: =2
+                            Color: =RGBA(51, 51, 51, 1)
+                            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            FocusedBorderThickness: =4
+                            Font: =Font.'Segoe UI'
+                            FontWeight: =FontWeight.Semibold
+                            Size: =11
+                            Text: ="Learning Log"
+                            ZIndex: =1
+
+                        HtmlText2 As htmlViewer:
+                            AlignInContainer: =AlignInContainer.Stretch
+                            BorderColor: =RGBA(230, 230, 230, 1)
+                            BorderThickness: =1
+                            FillPortions: =1
+                            HtmlText: |-
+                                =Coalesce(
+                                    locJournal.Learning,
+                                    "None"
+                                )
+                            ZIndex: =2
+
+                Container1 As groupContainer.verticalAutoLayoutContainer:
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =2
+                    PaddingRight: =12
+                    Visible: =Not(IsBlank(locJournal))
+                    ZIndex: =4
+
+                    Label5_5 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Size: =11
+                        Text: ="Self Rating"
+                        ZIndex: =1
+
+                    Container21 As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: =0
+                        Height: =40
+                        LayoutGap: =8
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        ZIndex: =2
+
+                        Rating2 As rating:
+                            AccessibleLabel: ="self rating of this log"
+                            AlignInContainer: =AlignInContainer.Start
+                            BorderColor: =RGBA(0, 0, 0, 0)
+                            BorderStyle: =BorderStyle.None
+                            BorderThickness: =0
+                            Default: =locJournal.SelfRating.Value
+                            DisabledBorderColor: =RGBA(159, 167, 165, 1)
+                            DisabledFill: =Self.Fill
+                            DisplayMode: =DisplayMode.View
+                            Fill: =RGBA(0, 0, 0, 0)
+                            FocusedBorderColor: =Self.BorderColor
+                            FocusedBorderThickness: =4
+                            Height: =36
+                            HoverFill: =Self.Fill
+                            LayoutMinHeight: =40
+                            LayoutMinWidth: =200
+                            PressedFill: =Self.Fill
+                            RatingFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                            Width: =200
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        Label12 As label:
+                            BorderColor: =RGBA(0, 0, 0, 0)
+                            BorderStyle: =BorderStyle.None
+                            BorderThickness: =2
+                            Color: =RGBA(51, 51, 51, 1)
+                            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            FocusedBorderThickness: =4
+                            Font: =Font.'Segoe UI'
+                            Size: =12
+                            Text: |-
+                                =Switch(
+                                    Value(locJournal.SelfRating.Value),
+                                    1,
+                                    "Very Poor",
+                                    2,
+                                    "Poor",
+                                    3,
+                                    "Average",
+                                    4,
+                                    "Good",
+                                    5,
+                                    "Awesome"
+                                )
+                            ZIndex: =2
+
+                    Label5_8 As label:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(51, 51, 51, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Size: =11
+                        Text: ="Comments"
+                        ZIndex: =3
+
+                    txtRatingComment As text:
+                        AccessibleLabel: ="Text box for comment"
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Color: =RGBA(51, 51, 51, 1)
+                        Default: =locJournal.RatingJustification
+                        DisabledBorderColor: =RGBA(204, 204, 204, 1)
+                        DisabledColor: =RGBA(116, 116, 116, 1)
+                        DisabledFill: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =DisplayMode.Disabled
+                        FocusedBorderThickness: =1
+                        Font: =Font.'Segoe UI'
+                        Height: =80
+                        HintText: =""
+                        HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        HoverColor: =RGBA(51, 51, 51, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        Mode: =TextMode.MultiLine
+                        PaddingBottom: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(51, 51, 51, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Size: =12
+                        ZIndex: =4
+
+                    Icon1 As icon.Trash:
+                        AlignInContainer: =AlignInContainer.End
+                        BorderColor: =RGBA(166, 166, 166, 1)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(220, 220, 220, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        DisplayMode: |-
+                            =If(
+                                User().Email = "najib@tekniklibarti.my",
+                                DisplayMode.Edit,
+                                DisplayMode.Disabled
+                            )
+                        FocusedBorderThickness: =4
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Trash
+                        OnSelect: =Remove('Journal List', locJournal)
+                        PaddingBottom: =icoProp.padding*2
+                        PaddingLeft: =icoProp.padding
+                        PaddingRight: =icoProp.padding
+                        PaddingTop: =icoProp.padding*2
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        ZIndex: =5
+
