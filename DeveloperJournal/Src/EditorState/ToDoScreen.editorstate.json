@@ -1428,7 +1428,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Container19",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1862,7 +1862,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Container24",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2396,7 +2396,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "galTodoCompleted",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3398,7 +3398,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Icon2_1",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3713,7 +3713,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "icoRefresh_1",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -4283,7 +4283,7 @@
       "LayoutName": "",
       "MetaDataIDKey": "",
       "Name": "Label4_1",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
